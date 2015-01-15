@@ -7,11 +7,12 @@ XmppClient = function() {
 Accounts.registerLoginHandler("xmpp", function (options) {
 	check([options.user, options.password], [String]);
 
-	var username = (Accounts.xmpp.domain) ? options.user + "@" + Accounts.xmpp.domain : options.user,
+	var config = ServiceConfiguration.configurations.findOne({service: "xmpp"}),
+		username = (config.domain) ? options.user + "@" + config.domain : options.user,
 		user, userId, result, receivedResponse;
 
 	client = new Xmpp.Client({
-		host: Accounts.xmpp.host,
+		host: config.host,
 		jid: username,
 		password: options.password
 	});

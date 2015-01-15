@@ -10,13 +10,14 @@ $ meteor add fredrik:accounts-xmpp
 
 ## Usage
 
-A host and domain to log in to can be configured on the server by setting an `xmpp` property on the `Accounts` object like so:
+A host and domain to log in to can be configured by inserting a record in the `ServiceConfiguration.configurations` collection with a `service: "xmpp"` property like so:
 
 ```js
-Accounts.xmpp = {
+ServiceConfiguration.configurations.insert({
+    service: "xmpp",
     host: "192.168.2.222",
     domain: "users"
-};
+});
 ```
 
 Like any other Meteor login method, you can authenticate user credentials by running:
