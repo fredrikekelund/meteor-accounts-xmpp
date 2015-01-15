@@ -1,6 +1,12 @@
-# accounts-xmpp
+# [fredrik:accounts-xmpp](https://atmospherejs.com/fredrik/accounts-xmpp)
 
 > Integrates the Meteor accounts system with XMPP servers
+
+## Install
+
+```sh
+$ meteor add fredrik:accounts-xmpp
+```
 
 ## Usage
 
@@ -23,6 +29,27 @@ Meteor.loginWithXmpp(username, password, function(error, result) {
         console.log("Login successful", Meteor.user());
     }
 });
+```
+
+### Interfacing with the XMPP client
+
+The XMPP client (ie. the connection to the server) is stored in a `Session` variable called `XmppClient`.
+
+[fredrik:node-xmpp](https://atmospherejs.com/fredrik/node-xmpp) is a Meteor wrapper for [node-xmpp](https://github.com/node-xmpp/node-xmpp) that you can use for sending messages to the client.
+
+```js
+var client = Session.get("XmppClient"),
+    sendData = function(client, to, data) {
+        var stanza = new Xmpp.Element("message", {
+            to: to,
+            type: "chat"
+        });
+
+        stanza.c("body").t(data);
+        client.send(stanza);
+    };
+
+sendData(client, "fredrik@users", "hello");
 ```
 
 ## License

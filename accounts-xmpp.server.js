@@ -14,6 +14,7 @@ Accounts.registerLoginHandler("xmpp", function (options) {
 
 		username = (data.jid.domain) ? data.jid.user + "@" + data.jid.domain : data.jid.user;
 		user = Meteor.users.findOne({username: username});
+		Session.set("XmppClient", client);
 
 		result = {
 			userId: (user) ? user._id : Meteor.users.insert({username: username})
