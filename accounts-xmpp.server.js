@@ -1,20 +1,26 @@
+var client;
+
+XmppClient = function() {
+	return client;
+};
+
 Accounts.registerLoginHandler("xmpp", function (options) {
 	check([options.user, options.password], [String]);
 
 	var username = (Accounts.xmpp.domain) ? options.user + "@" + Accounts.xmpp.domain : options.user,
-		client = new Xmpp.Client({
-			host: Accounts.xmpp.host,
-			jid: username,
-			password: options.password
-		}),
 		user, userId, result, receivedResponse;
+
+	client = new Xmpp.Client({
+		host: Accounts.xmpp.host,
+		jid: username,
+		password: options.password
+	});
 
 	client.on("online", Meteor.bindEnvironment(function(data) {
 		receivedResponse = true;
 
 		username = (data.jid.domain) ? data.jid.user + "@" + data.jid.domain : data.jid.user;
 		user = Meteor.users.findOne({username: username});
-		XmppClient = client;
 
 		result = {
 			userId: (user) ? user._id : Meteor.users.insert({username: username})

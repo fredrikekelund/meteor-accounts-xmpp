@@ -1,7 +1,7 @@
 Package.describe({
 	name: "fredrik:accounts-xmpp",
 	summary: "XMPP integration for Meteor accounts",
-	version: "0.1.3",
+	version: "0.1.4",
 	git: "https://github.com/fredrikekelund/meteor-accounts-xmpp.git"
 });
 
