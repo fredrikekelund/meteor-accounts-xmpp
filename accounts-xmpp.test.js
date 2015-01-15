@@ -1,4 +1,4 @@
-Tinytest.add("Log in with XMPP", function (test) {
+Tinytest.addAsync("Log in with XMPP", function (test, done) {
 	var username = window.prompt("Username"),
 		password = window.prompt("Password");
 
@@ -10,5 +10,7 @@ Tinytest.add("Log in with XMPP", function (test) {
 			test.ok("Login successful");
 			console.log(Meteor.user());
 		}
+
+		done();
 	});
 });
