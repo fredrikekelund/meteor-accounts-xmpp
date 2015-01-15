@@ -7,10 +7,10 @@ Package.describe({
 
 Package.onUse(function (api) {
 	api.use("froatsnook:sleep", "server");
-	api.use("fredrik:node-xmpp", "server");
-	api.use("accounts-base", ["client", "server"]);
+	api.use("fredrik:node-xmpp@=1.0.0", "server");
+	api.use("accounts-base@=1.1.3", ["client", "server"]);
+	api.use("check", "server");
 	api.imply("accounts-base", ["client", "server"]); // Export Accounts (etc) to packages using this one.
-	api.use("check");
 
 	api.addFiles("accounts-xmpp.config.js", ["client", "server"]);
 	api.addFiles("accounts-xmpp.client.js", "client");
