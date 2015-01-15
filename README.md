@@ -33,12 +33,12 @@ Meteor.loginWithXmpp(username, password, function(error, result) {
 
 ### Interfacing with the XMPP client
 
-The XMPP client (ie. the connection to the server) is stored in a `Session` variable called `XmppClient`.
+The XMPP client (ie. the connection to the server) is stored in a variable called `XmppClient`.
 
 [fredrik:node-xmpp](https://atmospherejs.com/fredrik/node-xmpp) is a Meteor wrapper for [node-xmpp](https://github.com/node-xmpp/node-xmpp) that you can use for sending messages to the client.
 
 ```js
-var client = Session.get("XmppClient"),
+var client = XmppClient,
     sendData = function(client, to, data) {
         var stanza = new Xmpp.Element("message", {
             to: to,
