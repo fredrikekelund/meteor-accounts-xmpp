@@ -5,6 +5,10 @@ XmppClient = function() {
 };
 
 Accounts.registerLoginHandler("xmpp", function (options) {
+	if (!options.xmpp) {
+		return undefined;
+	}
+
 	check([options.user, options.password], [String]);
 
 	var config = ServiceConfiguration.configurations.findOne({service: "xmpp"}),
