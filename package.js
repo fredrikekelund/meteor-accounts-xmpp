@@ -1,19 +1,19 @@
 Package.describe({
 	name: "fredrik:accounts-xmpp",
 	summary: "XMPP integration for Meteor accounts",
-	version: "0.1.6",
+	version: "0.1.7",
 	git: "https://github.com/fredrikekelund/meteor-accounts-xmpp.git"
 });
 
 Package.onUse(function (api) {
-	api.use("froatsnook:sleep@=1.0.0", "server");
-	api.use("fredrik:node-xmpp@=1.0.0", "server");
-	api.use("accounts-base@=1.1.3", ["client", "server"]);
-	api.use("check@=1.0.3", "server");
-	api.use("service-configuration@=1.0.3", ["client", "server"]);
+	api.use("froatsnook:sleep@1.0.0", "server");
+	api.use("fredrik:node-xmpp@1.0.0", "server");
+	api.use("accounts-base@1.1.3", ["client", "server"]);
+	api.use("check@1.0.3", "server");
+	api.use("service-configuration@1.0.3", "server");
 
 	api.imply("accounts-base", ["client", "server"]); // Export Accounts (etc) to packages using this one.
-	api.imply("service-configuration", ["client", "server"]);
+	api.imply("service-configuration", "server");
 
 	api.addFiles("accounts-xmpp.client.js", "client");
 	api.addFiles("accounts-xmpp.server.js", "server");
